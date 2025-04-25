@@ -113,7 +113,7 @@ abstract class ExportDecorator implements Exporter{
     }
 
     public function export(string $data): string{
-        $this->exporter->export($data);
+        return $this->exporter->export($data);
     }
 }
 
@@ -123,7 +123,7 @@ class EncryptedExporter extends ExportDecorator{
     }
 
     public function export(string $data): string{
-        parent::export($data) . encrypt();
+        parent::export($data) . self::encrypt();
     }
 }
 
@@ -133,7 +133,7 @@ class CompressedExporter extends ExportDecorator{
     }
 
     public function export(string $data): string{
-        parent::export($data) . compress();
+        parent::export($data) . self::compress();
     }
 }
 
@@ -143,7 +143,7 @@ class SignedExporter extends ExportDecorator{
     }
 
     public function export(string $data): string{
-        parent::export($data) . sign();
+        parent::export($data) . self::sign();
     }
 }
 
